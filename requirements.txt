@@ -1,0 +1,13 @@
+Flask~=2.0.1
+Flask-Login
+Flask-Sqlalchemy
+Sqlalchemy
+Gevent
+multiprocess
+pyOpenSSL
+certifi~=2021.5.30
+requests~=2.25.1
+
+idna~=2.10
+cryptography~=3.4.7
+aiohttp~=3.7.4.post0
