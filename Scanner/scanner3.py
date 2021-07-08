@@ -2,6 +2,8 @@ import json
 import socket
 import ssl
 
+from ipwhois import IPWhois, BaseIpwhoisException
+
 from Database.Models.ScanResult import ScanResult
 
 
@@ -26,6 +28,13 @@ def scan_domain(host_name):
         except socket.error as e:
             pass
 
-    return ScanResult(host_name, ip_address, is_secure, protocol, certificate)
+        try:
+            ip_whois = IPWhois(ip_address)
+            whois = json.dumps(ip_whois.lookup_whois())
+            rdap = json.dumps(ip_whois.lookup_rdap())
+        except BaseIpwhoisException as e:
+            pass
+
+    return ScanResult(host_name, ip_address, is_secure, protocol, certificate, whois, rdap)
 
 

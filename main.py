@@ -41,10 +41,10 @@ def handle_scan():
     except Exception as e:
         return {
             'error': {
-                'type': 'InvalidDomain',
-                'message': f'Could not find the dns record for {{{domain}}}'
+                'type': 'ScanError',
+                'message': str(e)
             }
-        }, 404
+        }, 400
 
     if cached_scan_result is None:
         db.session.add(scan_result)
